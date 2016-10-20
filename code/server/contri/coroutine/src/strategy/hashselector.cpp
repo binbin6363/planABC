@@ -1,0 +1,10 @@
+///////////////////////////////////////////////////////////
+//  hashselector.cpp
+//  Implementation of the Class ModHashSelector
+//  Created on:      26-ÎåÔÂ-2015 9:39:55
+//  Original author: imo
+///////////////////////////////////////////////////////////
+
+#include "hashselector.h"
+
+

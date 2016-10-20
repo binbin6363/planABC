@@ -1,0 +1,16 @@
+CREATE TABLE think_user( 
+Fuid  int(21) unsigned NOT NULL default 0
+, Fver int(11) unsigned NOT NULL default 0
+, Faccount  varchar(256) default '0'
+, Fmobile  varchar(20) default '0'
+, Fmail  varchar(20) default ''
+, Fsign  varchar(256) default ''
+, Faccounttype  int(11)  NOT NULL default 0
+, Fpassword varchar(16) NOT NULL default ''
+, Fnick_name varchar(16) default ''
+, Fuser_location varchar(128) default ''
+, Fcreate_time  timestamp NOT NULL default 0
+, Fupdate_time  timestamp default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
+, PRIMARY KEY  ( Fuid )
+, UNIQUE KEY Faccount (Fuid) 
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;

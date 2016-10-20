@@ -1,0 +1,3 @@
+---- WriteStringToFileSync Matches (2 in 1 files) ----
+Filename.cc (f:\workspace\leveldb-master\db):extern Status WriteStringToFileSync(Env* env, const Slice& data,
+Filename.cc (f:\workspace\leveldb-master\db):  Status s = WriteStringToFileSync(env, contents.ToString() + "\n", tmp);

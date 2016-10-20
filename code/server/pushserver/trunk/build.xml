@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="jar" name="pushconsumer">  
+    <!-- 工程目录结构  
+    project  
+        |-bin  
+        |-src  
+        |-lib  
+        |-out  
+        |-build.xml  
+    -->  
+    <property name="lib.dir" value="lib"/>  
+    <property name="src.dir" value="src"/>  
+    <property name="classes.dir" value="out"/>  
+    <property name="resource.dir" value="resource"/>  
+    <property name="views.dir" value="views"/>  
+ 
+    <property name="output.dir" value="bin"/>
+    <property name="jarname" value="pushconsumer.jar"/>
+    <property name="mainclass" value="com.imo.PushServer"/>
+
+	<property name="debug" value="true"/>
+	<property name="debuglevel" value="source,lines,vars"/>
+	<property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+  
+    <!-- 第三方jar包的路径 -->  
+    <path id="lib-classpath">  
+        <fileset dir="${lib.dir}">  
+            <include name="**/*.jar"/>  
+        </fileset>  
+    </path>
+
+    <!-- 1. 初始化工作，如创建目录等 -->
+    <target name="init" depends="clean">
+        <echo message="+--- init start ---+" />
+        <mkdir dir="${classes.dir}"/>  
+        <mkdir dir="${output.dir}"/>
+		<echo message="+--- init end ---+" />
+    </target>  
+	
+	<!-- 2. 获取svn版本号 -->
+	<target name="version"  depends="init" >
+        <exec executable="sh" outputproperty="revisionVersion">  
+            <arg value="-c" />  
+            <arg value="svnversion | sed -e 's/^[^:]*://;s/[A-Za-z]//'"/>  
+        </exec>  
+		<property name="version" value="${revisionVersion}"/>
+		<echo message="svn version: ${version}"/>
+	</target>
+
+	<!-- 3. 解压第三方库到临时路径 -->
+	<target name="unzip_lib"  depends="version" >
+		<unzip dest="${classes.dir}">
+			<fileset dir="${lib.dir}">
+			<include name="**/*.jar"/>
+			<exclude name="**/tmp*.jar"/>
+			<exclude name="**/*javadoc.jar"/>
+			</fileset>
+		</unzip>
+		<delete dir="${classes.dir}/META-INF" />
+	</target>
+
+    <!-- 4. 编译,兼容低版本jdk,1.6 -->
+    <target name="compile" depends="unzip_lib">  
+        <echo message="+--- compile start ---+" />
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="${debug}" debuglevel="${debuglevel}" source="${source}" target="${target}" includeantruntime="false">
+            <compilerarg line="-encoding UTF-8"/>  
+            <classpath refid="lib-classpath"/>  
+        </javac>  
+        <echo message="+--- compile end ---+" />
+    </target>
+
+    <!-- 5. 打包jar文件 -->  
+    <target name="jar" depends="compile">
+		<echo message="+--- jar *.class files start ---+" />
+
+        <copy todir="${classes.dir}">
+            <fileset dir="${resource.dir}"/>
+            <fileset dir="${views.dir}"/>
+        </copy>
+
+        <tstamp>
+			<format property="touch.time" pattern="yyyy-MM-dd hh:mm:ss" />
+		</tstamp>
+
+        <!-- jar文件的输出路径 -->  
+        <jar destfile="${output.dir}/${jarname}" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-class" value="${mainclass}"/>
+                <attribute name="Code-Version" value="${version}"/>
+                <attribute name="Jdk-Version" value="${ant.java.version}"/>
+                <attribute name="Build-Time" value="${touch.time}"/>
+                <attribute name="Built-By" value="${user.name}"/>
+            </manifest>
+        </jar>  
+		<echo message="+--- jar *.class files end ---+" />
+    </target>
+
+    <!-- 清理 -->
+    <target name="clean">
+		<echo message="+--- clean tmp files start ---+" />
+        <!-- 可以以递归的方式删除目录 -->
+        <delete dir="${classes.dir}" />
+		<echo message="+--- clean tmp files end ---+" />
+    </target>
+
+</project>  

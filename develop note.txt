@@ -1,0 +1,40 @@
+
+1. 客户端与服务端接入的传输协议使用json格式，数据采用XTEA加密；
+2. 服务端之间传输协议采用protoubf，数据不加密；
+3. 客户端与服务器之间的包头为HEADER，包含字段：    uint32_t len;uint32_t cmd;uint32_t seq;uint32_t head_len;uint32_t uid;
+4. 服务端之间的包头为COHEADER，包含字段：   uint32_t len;uint32_t cmd;uint32_t seq;uint32_t head_len;uint32_t uid;uin32_t sender_coid;uint32_t receiver_coid;
+5. 
+mysql> SELECT * FROM MY_DECIMAL;
++----+-------+------+
+| id | VALUE | MARK |
++----+-------+------+
+| 15 | 0.120 | a    |
+| 16 | 0.500 | b    |
+| 17 | 0.550 | c    |
+| 18 | 1.000 | d    |
+| 19 | 1.150 | e    |
+| 20 | 2.300 | f    |
+| 21 | 3.200 | g    |
+| 22 | 4.700 | h    |
+| 23 | 5.580 | i    |
+| 24 | 7.590 | j    |
++----+-------+------+
+10 rows in set (0.00 sec)
+ 
+mysql> SELECT *,CONCAT(0+(CAST(`VALUE` AS CHAR(4))),`MARK`) AS SS
+    ->  FROM `my_decimal`;
++----+-------+------+-------+
+| id | VALUE | MARK | SS    |
++----+-------+------+-------+
+| 15 | 0.120 | a    | 0.12a |
+| 16 | 0.500 | b    | 0.5b  |
+| 17 | 0.550 | c    | 0.55c |
+| 18 | 1.000 | d    | 1d    |
+| 19 | 1.150 | e    | 1.15e |
+| 20 | 2.300 | f    | 2.3f  |
+| 21 | 3.200 | g    | 3.2g  |
+| 22 | 4.700 | h    | 4.7h  |
+| 23 | 5.580 | i    | 5.58i |
+| 24 | 7.590 | j    | 7.59j |
++----+-------+------+-------+
+10 rows in set, 10 warnings (0.00 sec)

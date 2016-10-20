@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cond>
+    <run>
+      <!-- 1 daemon , 0 not daemon -->
+      <daemon>1</daemon>
+    </run>
+
+    <log>
+        <file>/home/wangbinbin/imo_server/workchat/leveldb_server/branch_sync/log/ldb_sync_slave</file>
+        <rank>INFO</rank>
+    </log>
+    <!-- leveldb server -->
+    <system>
+		<id>slave_1</id>
+        <ip>127.0.0.1</ip>
+        <port>9111</port>
+        <!-- clientsession timeout unit Second -->
+        <ttl>60</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>1024</buf_size>
+        <!-- unit Second -->
+        <check_timeout_interval>5</check_timeout_interval>
+		<binlog>false</binlog>   <!-- true or false, master must be true -->
+		<show_perfman_interval>20</show_perfman_interval>
+    </system>
+
+    <leveldb>
+        <dbpath>/home/wangbinbin/imo_server/workchat/leveldb_server/branch_sync/slave_dbpath</dbpath>
+        <create_if_missing>true</create_if_missing>         <!-- whether create db dir if  missing, default:false -->
+        <error_if_exists>false</error_if_exists>            <!-- whether report error if db dir exists, default:false -->
+        <paranoid_checks>false</paranoid_checks>            <!-- whether check data, if true , will do aggressive checking of the data it is processing and will stop early if it detects any errors, default:false-->
+        <write_buffer_size>4096</write_buffer_size>         <!-- unit KB, default:4M -->
+        <max_open_files>1000</max_open_files>               <!-- default: 1000 -->
+        <block_size>4</block_size>                          <!-- unit KB, default: 4K -->
+        <block_restart_interval>16</block_restart_interval> <!-- default:16 -->
+		<bits_per_key>10</bits_per_key>                     <!-- default:10 -->
+		<cache_size>10</cache_size>                         <!-- default:0 -->
+		<compression_type>0</compression_type>              <!-- default:0 -->
+		<binlog_size>100000</binlog_size>                   <!-- default:100000, must binlog_size > 100000 -->
+    </leveldb>
+	<master> <!-- connect to master -->
+        <connect>10</connect>             <!-- if connect master cost more than this, give up. unit Second -->
+        <reconnect>2</reconnect>          <!-- reconnect master interval after disconnected. unit Second -->
+        <ttl>2</ttl>                      <!-- heart beat frequency, send beat msg to master. unit Second -->
+        <buf_size>1024</buf_size>         <!-- max buf size when transfer data between master. unit KB, min size 1024KB -->
+        <timeout>60</timeout>             <!-- no receive master response more than this, disconnect from master. unit Second -->
+        <serverdetail>
+            <ip>127.0.0.1</ip>
+            <port>9210</port>
+            <id>master_1</id>
+        </serverdetail>
+    </master>
+
+    <udpcmd>
+        <ip>127.0.0.1</ip>
+        <port>9111</port>
+    </udpcmd>
+
+	<allow_list> 
+	    <ip>127.0.0.1</ip>
+	</allow_list>
+</cond>
+

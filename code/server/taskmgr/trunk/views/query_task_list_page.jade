@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .jumbotron.masthead
+      .container
+        h1 任务系统
+        h4  欢迎进入任务列表查询页
+    .container
+        .projects-header
+        form(action='/task/query_task_list', method='post', autocomplete='on')
+          .input-group
+            span#basic-addon1.input-group-addon 起始时间:
+            input.form-control(type='datetime', name='task_stime', placeholder='请输入起始时间', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 结束时间:
+            input.form-control(type='datetime', name='task_etime', placeholder='请输入结束时间', aria-describedby='basic-addon1')
+          button.btn.btn-lg.btn-primary(type='submit', id='query_task_info_btn') 提交

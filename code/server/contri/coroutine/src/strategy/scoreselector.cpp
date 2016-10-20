@@ -1,0 +1,10 @@
+///////////////////////////////////////////////////////////
+//  scoreselector.cpp
+//  Implementation of the Class ScoreSelector
+//  Created on:      7-ÆßÔÂ-2015 17:39:55
+//  Original author: imo
+///////////////////////////////////////////////////////////
+
+#include "scoreselector.h"
+
+

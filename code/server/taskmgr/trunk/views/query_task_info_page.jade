@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    .jumbotron.masthead
+      .container
+        h1 任务系统
+        h4  欢迎进入任务详情查询页
+    .container
+        .projects-header
+        form(action='/task/query_task_info', method='post', autocomplete='on')
+          .input-group
+            span#basic-addon1.input-group-addon 任务id:
+            input.form-control(type='text', name='task_id', placeholder='请输入任务id', aria-describedby='basic-addon1')
+          button.btn.btn-lg.btn-primary(type='submit', id='query_task_info_btn') 提交

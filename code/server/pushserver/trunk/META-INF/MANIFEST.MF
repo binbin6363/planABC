@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: com.imo.PushServer
+VERSION:     r8900 .3
+BUILD_BY:    root
+ON_MACHINE:  192.168.16.218 192.168.20.1
+BUILD_TIME:  2016-02-02 17:00:00
+JDK_VERSION:  jdk_1.7.5

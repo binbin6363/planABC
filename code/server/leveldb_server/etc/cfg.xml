@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cond>
+    <run>
+      <!-- 1 daemon , 0 not daemon -->
+      <daemon>1</daemon>
+    </run>
+
+    <log>
+        <file>/home/wangbinbin/workchat/leveldb/log/workleveldb</file>
+        <rank>DEBUG</rank>
+    </log>
+    <!-- leveldb server -->
+    <system>
+        <ip>127.0.0.1</ip>
+        <port>9509</port>
+        <!-- clientsession timeout unit Second -->
+        <ttl>60</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>10</buf_size>
+        <!-- unit Second -->
+        <check_timeout_interval>5</check_timeout_interval>
+    </system>
+
+    <leveldb>
+        <dbpath>/home/wangbinbin/workchat/leveldb/ldbfile</dbpath>
+        <create_if_missing>true</create_if_missing>         <!-- whether create db dir if  missing, default:false -->
+        <error_if_exists>false</error_if_exists>            <!-- whether report error if db dir exists, default:false -->
+        <paranoid_checks>false</paranoid_checks>            <!-- whether check data, if true , will do aggressive checking of the data it is processing and will stop early if it detects any errors, default:false-->
+        <write_buffer_size>4096</write_buffer_size>         <!-- unit KB, default:4M -->
+        <max_open_files>1000</max_open_files>               <!-- default: 1000 -->
+        <block_size>4</block_size>                          <!-- unit KB, default: 4K -->
+        <block_restart_interval>16</block_restart_interval> <!-- default:16 -->
+    </leveldb>
+
+    <udpcmd>
+        <ip>127.0.0.1</ip>
+        <port>9519</port>
+    </udpcmd>
+
+</cond>
+

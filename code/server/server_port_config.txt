@@ -1,0 +1,23 @@
+mobiled:
+    port: 6000 ~ 6099
+    id: 1 ~ 99
+usercenter:
+    port: 6100 ~ 6199
+    id: 100 ~ 199
+dbp:
+    port: 6200 ~ 6299
+    id: 200 ~ 299
+taskcenter:
+    port: 6300 ~ 6399
+    id: 300 ~ 399
+leveldb:
+    port: 6400 ~ 6499
+    id: 004 ~ 499
+dbagent:
+    port: 6500 ~ 6599
+    id: 500 ~ 599
+redis
+    port: 63790
+redisproxy:
+    port: 6600 ~ 6699
+    id: 600 ~ 699

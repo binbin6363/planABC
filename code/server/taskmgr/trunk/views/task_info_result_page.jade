@@ -1,0 +1,62 @@
+extends layout
+
+block content
+    .jumbotron.masthead
+        .container
+            h1 任务系统
+            h4 任务详情查询结果
+    .container
+        .panel.panel-default
+        // Default panel contents
+        .panel-heading 任务详情查询结果
+        // Table
+        table.table
+            thead
+                tr
+                    th transid
+                    th 状态
+                    th 错误码
+                    th 描述信息
+            tbody
+                tr
+                    td #{result.transid}
+                    td #{result.ret_status}
+                    td #{result.ret_code}
+                    td #{result.ret_msg}
+        //h4 #{result.ret_data}
+        table.table(border='1')
+            thead
+                tr
+                    th 任务id
+                    th 任务名称
+                    th 任务类型
+                    th 任务单价
+                    th 任务预计奖励总金额
+                    th 任务已奖励总金额
+                    th 任务发布者
+                    th 任务总数
+                    th 任务步骤
+                    th 任务起始时间
+                    th 任务结束时间
+                    th 任务状态
+            tbody
+               - for (var i = 0; i < result.ret_data.length; ++i)
+                 tr
+                   td #{result.ret_data[i].id}
+                   td #{result.ret_data[i].name}
+                   td #{result.ret_data[i].type}
+                   td #{result.ret_data[i].pay}
+                   td #{result.ret_data[i].pre_cash}
+                   td #{result.ret_data[i].award_cash}
+                   td #{result.ret_data[i].publisher_name}
+                   td #{result.ret_data[i].total_num}
+                   td #{result.ret_data[i].tstep}
+                   td #{result.ret_data[i].stime}
+                   td #{result.ret_data[i].etime}
+                   td #{result.ret_data[i].status}
+    .container
+        .list-group
+            a.list-group-item.active(href='/')
+                | 返回主页
+            a.list-group-item(href='/task/publish') 任务发布页
+            a.list-group-item(href='/task/query_task_info') 查询任务详情

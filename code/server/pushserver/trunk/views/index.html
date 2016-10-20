@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <style type="text/css">
+            h1 {
+                color: #f00;
+                text-align:center
+            }
+
+            p {
+                color: #000;
+            }
+
+            a:link {color:#FF0000;}      /* unvisited link */
+            a:visited {color:#00FF00;}  /* visited link */
+            a:hover {color:#FF00FF;}  /* mouse over link */
+            a:active {color:#0000FF;}  /* selected link */
+
+            body {
+                padding:40;
+                margin:10;
+                font-family:"宋体";
+            }
+
+        </style>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>push server manager</title>
+    </head>
+
+    <body>
+        <h1>欢迎进入pushserver管理界面</h1>
+        <p>welcome enter push server mgr gui</p>
+    <ul>
+        <p><span><a href="#">主页</a> 点击进入index界面</span></p>
+        <p><a href="/reload_config" target="_blank">reload config</a> 点击重新加载配置文件</p>
+        <p><a href="/show_config" target="_blank">show config info</a> 点击显示配置文件信息</p>
+        <p><a href="/push_msg_page" target="_blank">push one msg</a> 发送push msg给用户</p>
+        <p><a href="/run_info" target="_blank">show run info</a> 查看pushserver运行情况</p>
+    </ul>
+    </body>
+</html>

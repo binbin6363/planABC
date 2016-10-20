@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cond>
+    <linux>
+      <uid>0</uid>
+    </linux>
+    <log>
+        <file>/home/log/usercenter.log</file>
+        <rank>INFO</rank>
+        <isbuf>FALSE</isbuf>
+        <lip>127.0.0.1</lip>
+        <lport>1821</lport>
+        <ip>127.0.0.1</ip>
+        <port>43389</port>
+    </log>
+    <!-- usercenter cond server -->
+    <system>
+		<id>100</id>
+        <servicename>CLIENT</servicename>
+        <maxuser>10000</maxuser>
+        <maxcon>12000</maxcon>
+        <ip>127.0.0.1</ip>
+        <port>6100</port>
+        <ttl>180</ttl>
+        <ftl>120</ftl>
+        <timeout>600</timeout>
+        <libco_timeout>5</libco_timeout>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>10</buf_size>
+		<group_strategy>0</group_strategy>
+		<session_strategy>2</session_strategy>
+        <!-- max corotine number -->
+        <max_coro_num>20000</max_coro_num>	
+    </system>
+
+	<user>
+		<user_check_interval>20</user_check_interval> <!-- in unit second -->
+		<user_timeout>60</user_timeout>               <!-- in unit second -->
+		<user_clean_time>90</user_clean_time>           <!-- in unit day -->
+	</user>
+
+    <dbproxyd>
+        <servicename>DBP</servicename>
+        <!--connect time out -->
+        <connect>60</connect>
+        <!-- reconnect interval -->
+        <reconnect>2</reconnect>
+        <!-- heart beat frequency -->
+        <ttl>2</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>1024</buf_size>
+        <!-- time out check point -->
+        <timeout>90</timeout>
+		<group_strategy>0</group_strategy>
+		<session_strategy>0</session_strategy>
+        <serverdetail>
+            <id>200</id>
+            <ip>127.0.0.1</ip>
+            <port>6200</port>
+            <group_id>1</group_id>
+        </serverdetail>
+    </dbproxyd>
+
+    <udpcmd>
+        <ip>127.0.0.1</ip>
+        <port>6100</port>
+    </udpcmd>
+
+</cond>

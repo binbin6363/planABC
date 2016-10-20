@@ -1,0 +1,177 @@
+package com.adv.msg;
+
+import "adv_base.proto";
+
+// 用户心跳上报，服务端之间
+message UserKeepAliveRequest
+{
+    required int32   condid        = 1;    // 接入服务id
+    required int32   devicetype    = 2;    // 客户端设备类型
+    optional string  deviceid      = 3;    // 设备唯一ID
+    optional int32   uid           = 4;    // 用户ID
+    optional int32   version       = 5;    // 客户端版本号
+    optional int32   transid       = 32;   // 标示请求
+}
+
+
+// 登录协议
+message LoginRequest 
+{
+    required string  token         = 1;    //登录的token
+    optional int32   magicnum       = 2;    //固定值123456789
+    optional int32   status           = 3;       //客户端状态
+    required int32   devicetype    = 4;    //客户端设备类型
+    required string  deviceid      = 6;    //设备唯一ID
+    optional string  description   = 7;    //设备名称
+    required int32   condid        = 8;    //所在cond的id
+    optional int32   loginseq      = 9;    // 登录带到后端的序列号
+    optional int32   accounttype   = 10;   // (1.qq,2.weixin)
+    optional string  account       = 11;
+    optional string  passwd        = 12;
+    optional int32   version       = 13;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message LoginResult
+{     
+    required RetBase retbase       = 1;
+    required string  key           = 2; // 服务端生成的密钥
+    required int32   uid           = 3; // 用户id
+    required int32   loginseq      = 4; // 登录带到后端的序列号
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message LogoutRequest 
+{
+    required int32   deviceType    = 1;    //客户端设备类型
+    required string  deviceid      = 2;    //设备唯一ID
+    required int32   conid         = 3;    //所在cond的id
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message LogoutResult
+{       
+    required RetBase   retbase     = 1;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+// 任务相关协议
+message TaskNotify
+{
+    required int32    tasktype     = 1;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message SyncTaskRequest
+{
+    required int64    syncpoint       = 1;
+    required int32    synctype     = 2; // (1,拉下载任务;2.拉文章任务)
+    optional int32    syncflag     = 3; // (1,拉新任务;2.拉历史任务)
+    optional int32    synclimit    = 4;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message SyncTaskResult
+{
+    required RetBase retbase       = 1;
+    repeated TaskInfo taskinfos    = 2;
+    required int32    synctype     = 3; // (1,拉新任务;2.拉历史任务)
+    optional int32   continueflag  = 4;
+    optional int64   maxtaskid     = 5;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message ReportTaskRequest
+{
+    required TaskInfo  taskinfo    = 1;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message ReportTaskResult
+{
+    required RetBase retbase       = 1;
+    required int64    taskid       = 2;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+
+// 收入相关
+message GetIncomeRequest
+{
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message GetIncomeResult
+{
+    required RetBase retbase       = 1;
+    required string  pre_cash      = 2;   // 预财富值
+    required string  useable_cash  = 3;   // 可以提取的财富值
+    required string  fetched_cash  = 4;   // 已经提取的财富值
+    optional int32   rank          = 5;   // 资产排行
+    optional string  desc          = 6;   // 描述
+    optional int32   transid       = 32;   // 标示请求
+}
+
+// 同步数据的ack
+message AckRequest
+{
+    required int32   type          = 1;
+    repeated int64   id            = 2;
+    optional int32   time          = 3;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+
+// 存储任务
+message SaveTaskRequest
+{
+    repeated TaskInfo taskinfo     = 1;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message SaveTaskResult
+{
+    required RetBase retbase       = 1;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+
+// mysql相关
+message MysqlRequest
+{
+    required int32   sqlid      = 1;
+    required string  sql        = 2;
+    optional int32   isrequestfield = 3;
+    optional int32   limit      = 4;
+    optional int32   timeout    = 5;
+}
+
+message MysqlResult
+{
+    required RetBase retbase       = 1;
+    optional int32   affectedrows  = 2;
+    optional int32   insertid      = 3;
+    repeated PRow    rows          = 4;
+    optional int32   sqlid         = 5;
+}
+
+// redis proxy相关
+message RedispRequest
+{
+    required int32   sqlid      = 1;
+    required string  key        = 2;
+    optional int32   param      = 3;
+    optional int32   limit      = 4;
+    optional int32   timeout    = 5;
+    optional int32   transid       = 32;   // 标示请求
+}
+
+message RedispResult
+{
+    required RetBase retbase       = 1;
+    optional int32   affectedrows  = 2;
+    optional int32   insertid      = 3;
+    repeated PRow    rows          = 4;
+    optional int32   sqlid         = 5;
+    optional int32   transid       = 32;   // 标示请求
+}

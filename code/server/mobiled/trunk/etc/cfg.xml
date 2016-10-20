@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cond>
+    <partner>
+      <file>/home/bbwang/workspace/src/mobiled/etc/imo_mobiled_ios.pid</file>
+    </partner>
+    <update>
+      <file>/home/bbwang/workspace/src/mobiled/etc/update.xml</file>
+    </update>
+    <errormsg>
+      <file>/home/bbwang/workspace/src/mobiled/etc/errormsg.xml</file>
+    </errormsg>
+    <linux>
+      <uid>0</uid>
+    </linux>
+    <log>
+        <file>/home/bbwang/workspace/src/mobiled/log/ios_mobileagent.log</file>
+        <rank>DEBUG</rank>
+        <isbuf>FALSE</isbuf>
+        <lip>127.0.0.1</lip>
+        <lport>1822</lport>
+        <ip>127.0.0.1</ip>
+        <port>43390</port>
+    </log>
+    <!-- mobiled server -->
+    <system>
+        <maxuser>10000</maxuser>
+        <maxcon>12000</maxcon>
+        <ip>0.0.0.0</ip>
+        <port>6000</port>
+        <ttl>60</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>10</buf_size>
+        <ftl>120</ftl>
+        <timeout>600</timeout>
+        <!-- notice resend interval, unit s -->
+        <resend_interval>10</resend_interval>
+		<offlinemsg_interval>1</offlinemsg_interval>
+        <read_overtime>5</read_overtime>
+		<groupmsg_interval>1</groupmsg_interval>
+        <groupread_overtime>3</groupread_overtime>
+    </system>
+
+    <cond>
+        <!-- cond_dev indicate this is for android dev -->
+	<cond_dev>2</cond_dev>
+        <id>168</id>
+        <!-- add buffer size setting, unit KB -->
+        <max_send_buf>10</max_send_buf>
+        <maintenance>
+            <!-- true or false -->
+            <open>false</open>
+            <!-- the hours will be last for from current time-->
+            <duration_hour>4</duration_hour>
+            <!-- type 0: data maintenace, type 1: update version-->
+            <type>0</type>
+        </maintenance>
+	<process_msgcenter_cmd>true</process_msgcenter_cmd>
+    </cond>
+
+    <udp>
+        <ip>127.0.0.1</ip>
+        <port>35024</port>
+    </udp>
+    <udplogserver>
+        <ip>114.80.80.20</ip>
+        <port>1811</port>
+    </udplogserver>
+    <imd>
+	<!--connect time out -->
+	<connect>90</connect>
+	<!-- reconnect interval -->
+	<reconnect>2</reconnect>
+	<timeout>600</timeout>
+        <ttl>2</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>20</buf_size>
+	<serverdetail>
+		<id>1</id>
+		<ip>127.0.0.1</ip>
+		<port>35101</port>
+	</serverdetail>
+	<serverdetail>
+		<id>2</id>
+		<ip>127.0.0.1</ip>
+		<port>35111</port>
+	</serverdetail>
+    </imd>
+
+    <msg_center>
+        <!-- connect < timeout, ttl < servertimeout, ttl < timeout -->
+        <!--connect time out -->
+        <connect>60</connect>
+        <!-- reconnect interval -->
+        <reconnect>2</reconnect>
+        <!-- heart beat frequency -->
+        <ttl>2</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>20</buf_size>
+        <!-- time out check point -->
+        <timeout>90</timeout>
+        <serverdetail>
+			<id>1</id>
+			<ip>127.0.0.1</ip>
+            <port>31600</port>
+        </serverdetail>
+        <serverdetail>
+			<id>2</id>
+			<ip>127.0.0.1</ip>
+            <port>31700</port>
+        </serverdetail>
+        <serverdetail>
+			<id>3</id>
+			<ip>127.0.0.1</ip>
+            <port>31800</port>
+        </serverdetail>
+    </msg_center>
+
+    <udpcmd>
+        <ip>127.0.0.1</ip>
+        <port>6000</port>
+    </udpcmd>
+
+    <dbproxyd>
+        <!--connect time out -->
+        <connect>60</connect>
+        <!-- reconnect interval -->
+        <reconnect>2</reconnect>
+        <!-- heart beat frequency -->
+        <ttl>2</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>1024</buf_size>
+        <!-- time out check point -->
+        <timeout>90</timeout>
+        <serverdetail>
+			<id>1</id>
+            <ip>127.0.0.1</ip>
+            <port>35400</port>
+        </serverdetail>
+    </dbproxyd>
+
+	<uploadservice>
+        <!--connect time out -->
+        <connect>60</connect>
+        <!-- reconnect interval -->
+        <reconnect>2</reconnect>
+        <!-- heart beat frequency -->
+        <ttl>2</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>1024</buf_size>
+        <!-- time out check point -->
+        <timeout>90</timeout>
+        <serverdetail>
+			<id>1</id>
+            <ip>127.0.0.1</ip>
+            <port>3838</port>
+        </serverdetail>
+    </uploadservice>
+
+    <qgroupd>
+        <!--connect time out -->
+        <connect>60</connect>
+        <!-- reconnect interval -->
+        <reconnect>2</reconnect>
+        <!-- heart beat frequency -->
+        <ttl>2</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>20</buf_size>
+        <!-- time out check point -->
+        <timeout>90</timeout>
+        <serverdetail>
+			<id>1</id>
+            <ip>127.0.0.1</ip>
+            <port>35200</port>
+        </serverdetail>
+        <serverdetail>
+			<id>2</id>
+            <ip>127.0.0.1</ip>
+            <port>35210</port>
+        </serverdetail>
+    </qgroupd>
+
+    <ngroupd>
+        <!--connect time out -->
+        <connect>60</connect>
+        <!-- reconnect interval -->
+        <reconnect>2</reconnect>
+        <!-- heart beat frequency -->
+        <ttl>2</ttl>
+        <!-- add buffer size setting, unit KB -->
+        <buf_size>20</buf_size>
+        <!-- time out check point -->
+        <timeout>90</timeout>
+        <serverdetail>
+			<id>1</id>
+            <ip>127.0.0.1</ip>
+            <port>35300</port>
+        </serverdetail>
+        <serverdetail>
+			<id>2</id>
+            <ip>127.0.0.1</ip>
+            <port>35310</port>
+        </serverdetail>
+    </ngroupd>
+
+    <UploadList>
+        <UploadServer>
+            <ip>114.80.80.24</ip>
+            <port>5186</port>
+            <type>1</type>
+        </UploadServer>
+    </UploadList>
+
+    <UdpTransferList>
+        <UdpTransferServer>
+            <ip>114.80.80.31</ip>
+            <port>1939</port>
+        </UdpTransferServer>
+    </UdpTransferList>
+
+	<client_policy>
+		<idx>0</idx>
+		<all_open>0</all_open>
+		<cids>43;230419</cids>
+    </client_policy>
+
+	<client_policy>
+		<idx>1</idx>
+		<all_open>0</all_open>
+		<cids>43;230419</cids>
+    </client_policy>
+
+	<client_policy>
+		<idx>2</idx>
+		<all_open>1</all_open>
+		<cids>0</cids>
+    </client_policy>
+
+	<client_policy>
+		<idx>3</idx>
+		<all_open>0</all_open>
+		<cids>43;230419</cids>
+    </client_policy>
+
+    <loadip>114.80.80.20</loadip>
+    <stunip>114.80.80.29</stunip>
+    <relayip>114.80.80.29</relayip>
+    <preupdate_build>0</preupdate_build>
+</cond>

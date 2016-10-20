@@ -1,0 +1,123 @@
+doctype html
+html
+  head
+    // Bootstrap CSS
+    //meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    //link(rel='stylesheet', href='//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    // Site CSS
+    link(href='http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css', rel='stylesheet')
+    link(href='http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css', rel='stylesheet')
+    link(href='http://static.bootcss.com/www/assets/css/site.min.css?v5', rel='stylesheet')
+    link(href='/css/bootstrap-datetimepicker.min.css', rel='stylesheet', media='screen')
+    style.
+      .job-hot {
+      position: absolute;
+      color: #d9534f;
+      right: 0;
+      top: 15px;
+      }
+    // Favicons
+    link(rel='apple-touch-icon-precomposed', href='http://static.bootcss.com/www/assets/ico/apple-touch-icon-precomposed.png')
+    link(rel='shortcut icon', href='http://static.bootcss.com/www/assets/ico/favicon.png')
+    script.
+      var _hmt = _hmt || [];
+    title #{title}
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+
+          a.navbar-brand.hidden-sm(href='/', onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'navbar-首页'])") 首页
+        .navbar-collapse.collapse(role='navigation')
+          ul.nav.navbar-nav
+            li.hidden-sm.hidden-md
+              a(href='/task/publish/') 任务发布
+            li
+              a(href='#', target='_blank', onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'v3doc'])") 任务撤销
+            li
+              a(href='/task/query_task_info', target='_blank', onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'v4doc'])") 任务详情查询
+            li
+              a(href='/task/query_task_list', target='_blank', onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'less'])") 任务列表查询
+            li
+              a(href='/about/', onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'about'])") 关于
+    block content
+
+    footer.footer
+      .container
+        .row.footer-top
+          .col-sm-6.col-lg-6
+            h4
+              img(src='http://static.bootcss.com/www/assets/img/logo.png')
+            p
+              | 本网站所列开源项目的中文版文档全部由
+              a(href='http://www.bootcss.com/') Bootstrap中文网
+              | 成员翻译整理，并全部遵循 
+              a(href='http://creativecommons.org/licenses/by/3.0/', target='_blank') CC BY 3.0
+              | 协议发布。
+          .col-sm-6.col-lg-5.col-lg-offset-1
+            .row.about
+              .col-xs-3
+                h4 关于
+                ul.list-unstyled
+                  li
+                    a(href='/about/') 关于我们
+                  li
+                    a(href='#') 广告合作
+                  li
+                    a(href='#') 友情链接
+                  li
+                    a(href='#') 招聘
+              .col-xs-3
+                h4 联系方式
+                ul.list-unstyled
+                  li
+                    a(href='http://weibo.com/bootcss', title='Bootstrap中文网官方微博', target='_blank') 新浪微博
+                  li
+                    a(href='mailto:admin@bootcss.com') 电子邮件
+              .col-xs-3
+                h4 旗下网站
+                ul.list-unstyled
+                  li
+                    a(href='http://www.golaravel.com/', target='_blank') Laravel中文网
+                  li
+                    a(href='http://www.ghostchina.com/', target='_blank') Ghost中国
+              .col-xs-3
+                h4 赞助商
+                ul.list-unstyled
+                  li
+                    a(href='http://www.ucloud.cn/', target='_blank') UCloud
+                  li
+                    a(href='https://www.upyun.com', target='_blank') 又拍云
+        hr
+        .row.footer-bottom
+          ul.list-inline.text-center
+            li
+              a(href='http://www.miibeian.gov.cn/', target='_blank') 京ICP备11008151号
+            li 京公网安备11010802014853
+
+
+    // jQuery first, then Bootstrap JS.
+    script(src='//cdn.bootcss.com/jquery/1.11.3/jquery.min.js')
+    script(src='//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    script(src="/javascripts/bootstrap-datetimepicker.js" charset="UTF-8")
+    script(src="/javascripts/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8")
+
+    script(type='text/javascript').
+      $('.form_datetime').datetimepicker({
+      //language:  'fr',
+      weekStart: 1,
+      todayBtn:  1,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      forceParse: 0,
+      showMeridian: 1
+      });
+
+

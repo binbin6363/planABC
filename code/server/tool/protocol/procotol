@@ -1,0 +1,47 @@
+
+login cmd = 1000
+{
+    "request": {
+        "devid": "sdfguikltyui",
+        "dev_type": 1,
+        "version": 10,
+        "passwd": "vvfvfdssf"
+        "time": 1444998292
+    }
+}
+
+
+sync cmd = 2000
+{
+    "synckey": {
+        "count": 3,
+        "items": [
+            {
+                "k": 1,
+                "v": 641845799
+            },
+            {
+                "k": 2,
+                "v": 441165795
+            },
+            {
+                "k": 3,
+                "v": 141165795
+            }
+        ]
+    },
+    "time": 1444993118
+}
+
+
+
+report cmd = 3001
+{
+    "request": {
+        "id": 5634378,
+        "type": 0,
+        "done_step": 1,
+        "desc": "task decsribe",
+        "time": 1444998292
+    }
+}

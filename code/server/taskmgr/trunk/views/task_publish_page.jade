@@ -1,0 +1,79 @@
+extends layout
+
+block content
+    .jumbotron.masthead
+      .container
+        h1 任务系统
+        h4  欢迎进入任务发布页
+    .container
+        .projects-header
+        form(action='/task/publish', method='post', autocomplete='on')
+          .input-group
+            span#basic-addon1.input-group-addon 任务名称:
+            input.form-control(type='text', name='task_name', placeholder='请输入任务名称', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 任务简介:
+            input.form-control(type='text', name='task_desc', placeholder='请输入任务简介', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 任务签名:
+            input.form-control(type='text', name='task_signature', placeholder='请输入包名或者其他签名', aria-describedby='basic-addon1')
+          .input-group
+            span#sizing-addon1.input-group-addon 平台类型:
+            center
+              input(type='radio', name='platform', value='android', checked='checked', aria-label='...')
+              | Android平台
+              input(type='radio', name='platform', value='iOS', aria-label='...')
+              | iOS平台
+          .input-group
+            span#sizing-addon1.input-group-addon 任务类型:
+            center
+              input(type='radio', name='task_type', value='1', checked='checked', aria-label='...')
+              | 下载安装
+              input(type='radio', name='task_type', value='2', aria-label='...')
+              | 文章阅读
+              input(type='radio', name='task_type', value='3', aria-label='...')
+              | 友情转发
+          .input-group
+            span#basic-addon1.input-group-addon 任务图标:
+            input.form-control(type='text', name='task_icon', placeholder='请输入任务图标链接地址', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 任务文件:
+            input.form-control(type='text', name='task_file', placeholder='请输入任务文件链接地址', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 启动时间:
+            input.form-control(type='datetime', name='task_stime', placeholder='请输入unix时间戳', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 结束时间:
+            input.form-control(type='datetime', name='task_etime', placeholder='请输入unix时间戳', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 任务执行规则:
+            input.form-control(type='text', name='task_rule', placeholder='请输入json格式描述的规则', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 筛选用户规则:
+            input.form-control(type='text', name='pick_user_rule', placeholder='请输入json格式描述的规则' aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 单任务奖励金额:
+            input.form-control(type='number', name='task_pay', placeholder='请输入要奖励的金额总数', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 任务总份数:
+            input.form-control(type='number', name='task_total_num', placeholder='请输入要通知到的用户数', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 任务奖励数:
+            input.form-control(type='number', name='task_reward_num', placeholder='请输入要奖励的用户数，小于通知的用户数', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 任务总步数:
+            input.form-control(type='number', name='task_total_step', placeholder='请输入任务总步', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 发布者名称:
+            input.form-control(type='text', name='publisher_name', placeholder='请输入发布者名称',  aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 发布者邮箱:
+            input.form-control(type='email', name='publisher_email', placeholder='请输入发布者联系邮箱', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 发布者电话:
+            input.form-control(type='tel', name='publisher_phone', placeholder='请输入发布者联系电话', aria-describedby='basic-addon1')
+          .input-group
+            span#basic-addon1.input-group-addon 仅指定给如下特定用户:
+            input.form-control(type='text', name='uid_list', placeholder='请输入用户uid，分号分割', aria-describedby='basic-addon1')
+          button.btn.btn-lg.btn-primary(type='submit', id='publish_task_btn') 提交
+

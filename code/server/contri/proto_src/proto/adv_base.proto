@@ -1,0 +1,59 @@
+package com.adv.msg;
+
+
+// 返回值的基本数据
+message RetBase
+{
+   required int32   retcode   = 1;
+   optional string  retmsg    = 2;
+}
+
+
+// 任务信息
+message TaskInfo
+{
+    required int64  taskid        = 1; // 任务id号
+    required int32  tasktype      = 2; // 任务类型
+    required string taskname      = 3; // 任务名称
+    required string tasklink      = 4; // 任务链接地址
+    required string taskdesc      = 5; // 任务描述
+    required int32  tasksize      = 6; // 任务大小
+    required string taskprice     = 7; // 任务价格
+    optional int32  taskptstep    = 8; // 任务总步骤
+    optional int32  taskpcstep    = 9; // 任务当前处理进度
+    optional string taskpublisher = 10; // 任务发布者
+    optional int32  tasktotalnum  = 11; // 任务总数
+    optional int32  taskusednum   = 12; // 任务当前已被使用的数目
+    optional int64  taskstime     = 13; // 任务发布时间
+    optional int64  tasketime     = 14; // 任务截止时间
+    optional int32  taskstatus    = 15; // 任务状态(0表示未开始可执行，1表示已完成，2表示已抢光，3表示过期)
+    optional string taskicon      = 16; // 任务图标链接
+    optional string taskpkgname   = 17; // 任务包名
+}
+
+
+// mysql 结构定义
+message PField
+{
+    required string name             = 1;
+    required string value            = 2;
+    required int32  valuetype        = 3;
+
+}
+
+message PRow
+{
+    required int32  fieldnum        = 1;
+    repeated PField field           = 2;
+}
+
+
+// 服务器内部通用的数据传递格式
+message PDataCell
+{
+    required string tag       = 1;
+    optional string str_value = 2;
+    optional int32  i32_value = 3;
+    optional int64  i64_value = 4;
+}
+

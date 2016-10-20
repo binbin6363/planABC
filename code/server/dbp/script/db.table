@@ -1,0 +1,14 @@
+[db.table]
+
+db
+    user
+    third
+    task
+
+table
+    user.user (16*256)
+    user.task_list (16*16)
+    third.user (16*16)
+    task.cash (16*16)
+
+三个库，四种表
