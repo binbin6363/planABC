@@ -1,235 +1,247 @@
+syntax = "proto3";
 package com.adv.msg;
-
 import "adv_base.proto";
 
-// ÓÃ»§ĞÄÌøÉÏ±¨£¬·şÎñ¶ËÖ®¼ä
+// ç”¨æˆ·å¿ƒè·³ä¸ŠæŠ¥ï¼ŒæœåŠ¡ç«¯ä¹‹é—´
 message UserKeepAliveRequest
 {
-    required int32   condid        = 1;    // ½ÓÈë·şÎñid
-    required int32   devicetype    = 2;    // ¿Í»§¶ËÉè±¸ÀàĞÍ
-    optional string  deviceid      = 3;    // Éè±¸Î¨Ò»ID
-    optional int32   uid           = 4;    // ÓÃ»§ID
-    optional int32   version       = 5;    // ¿Í»§¶Ë°æ±¾ºÅ
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32   condid        = 1;    // æ¥å…¥æœåŠ¡id
+    int32   devicetype    = 2;    // å®¢æˆ·ç«¯è®¾å¤‡ç±»å‹
+    string  deviceid      = 3;    // è®¾å¤‡å”¯ä¸€ID
+    int32   uid           = 4;    // ç”¨æˆ·ID
+    int32   version       = 5;    // å®¢æˆ·ç«¯ç‰ˆæœ¬å·
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
+}
+
+message UserKeepAliveResult
+{
+    RetBase retbase       = 1;
+    int32   condid        = 2;    // æ¥å…¥æœåŠ¡id
+    int32   devicetype    = 3;    // å®¢æˆ·ç«¯è®¾å¤‡ç±»å‹
+    string  deviceid      = 4;    // è®¾å¤‡å”¯ä¸€ID
+    int32   uid           = 5;    // ç”¨æˆ·ID
+    int32   version       = 6;    // å®¢æˆ·ç«¯ç‰ˆæœ¬å·
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 
-// µÇÂ¼Ğ­Òé
+
+// ç™»å½•åè®®
 message LoginRequest 
 {
-    required string  token         = 1;    //µÇÂ¼µÄtoken
-    optional int32   magicnum      = 2;    //¹Ì¶¨Öµ123456789
-    optional int32   status        = 3;    //¿Í»§¶Ë×´Ì¬
-    required int32   devicetype    = 4;    //¿Í»§¶ËÉè±¸ÀàĞÍ
-    required string  deviceid      = 6;    //Éè±¸Î¨Ò»ID
-    optional string  description   = 7;    //Éè±¸Ãû³Æ
-    required int32   condid        = 8;    //ËùÔÚcondµÄid
-    optional int32   loginseq      = 9;    // µÇÂ¼´øµ½ºó¶ËµÄĞòÁĞºÅ
-    optional int32   accounttype   = 10;   // (1.qq,2.weixin)
-    optional string  account       = 11;
-    optional string  passwd        = 12;
-    optional int32   version       = 13;
-    optional string  nickname      = 14;   // êÇ³Æ
-    optional int32   gender        = 15;   // ĞÔ±ğ£¬0ÎªÅ®£¬1ÎªÄĞ
-    optional string  province      = 16;   // ËùÔÚÊ¡·İ
-    optional string  city          = 17;   // ËùÔÚ³ÇÊĞ
-    optional string  country       = 18;   // ËùÔÚ¹ú¼Ò
-    optional string  avatar        = 19;   // Í·ÏñÁ´½ÓµØÖ·
-    optional string  desc          = 20;   // ÃèÊöĞÅÏ¢
-    optional string  email         = 21;
-    optional string  mobile        = 22;
-    optional int32   time          = 23;   // µÇÂ¼Ê±¼ä´Á
-    optional int32   uid           = 24;   // ÓÃ»§uid£¬ÄÚ²¿Ê¹ÓÃ
-    optional int32   flag          = 25;   // µÇÂ¼·½Ê½£¬ÊÇ·ñÇ¿ÖÆµÇÂ¼
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    string  token         = 1;    //ç™»å½•çš„token
+    int32   magicnum      = 2;    //å›ºå®šå€¼123456789
+    int32   status        = 3;    //å®¢æˆ·ç«¯çŠ¶æ€
+    int32   devicetype    = 4;    //å®¢æˆ·ç«¯è®¾å¤‡ç±»å‹
+    string  deviceid      = 6;    //è®¾å¤‡å”¯ä¸€ID
+    string  description   = 7;    //è®¾å¤‡åç§°
+    int32   condid        = 8;    //æ‰€åœ¨condçš„id
+    int32   loginseq      = 9;    // ç™»å½•å¸¦åˆ°åç«¯çš„åºåˆ—å·
+    int32   accounttype   = 10;   // (1.qq,2.weixin)
+    string  account       = 11;
+    string  passwd        = 12;
+    int32   version       = 13;
+    string  nickname      = 14;   // æ˜µç§°
+    int32   gender        = 15;   // æ€§åˆ«ï¼Œ0ä¸ºå¥³ï¼Œ1ä¸ºç”·
+    string  province      = 16;   // æ‰€åœ¨çœä»½
+    string  city          = 17;   // æ‰€åœ¨åŸå¸‚
+    string  country       = 18;   // æ‰€åœ¨å›½å®¶
+    string  avatar        = 19;   // å¤´åƒé“¾æ¥åœ°å€
+    string  desc          = 20;   // æè¿°ä¿¡æ¯
+    string  email         = 21;
+    string  mobile        = 22;
+    int32   time          = 23;   // ç™»å½•æ—¶é—´æˆ³
+    int32   uid           = 24;   // ç”¨æˆ·uidï¼Œå†…éƒ¨ä½¿ç”¨
+    int32   flag          = 25;   // ç™»å½•æ–¹å¼ï¼Œæ˜¯å¦å¼ºåˆ¶ç™»å½•
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message LoginResult
 {     
-    required RetBase retbase       = 1;
-    optional string  key           = 2; // ·şÎñ¶ËÉú³ÉµÄÃÜÔ¿
-    optional int32   uid           = 3; // ÓÃ»§id
-    optional int32   loginseq      = 4; // µÇÂ¼´øµ½ºó¶ËµÄĞòÁĞºÅ
-    optional int32   accounttype   = 5;   // (1.qq,2.weixin)
-    optional int32   time          = 6;   // µÇÂ¼Ê±¼ä´Á
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    RetBase retbase       = 1;
+    string  key           = 2; // æœåŠ¡ç«¯ç”Ÿæˆçš„å¯†é’¥
+    int32   uid           = 3; // ç”¨æˆ·id
+    int32   loginseq      = 4; // ç™»å½•å¸¦åˆ°åç«¯çš„åºåˆ—å·
+    int32   accounttype   = 5;   // (1.qq,2.weixin)
+    int32   time          = 6;   // ç™»å½•æ—¶é—´æˆ³
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message LogoutRequest 
 {
-    required int32   deviceType    = 1;    //¿Í»§¶ËÉè±¸ÀàĞÍ
-    required string  deviceid      = 2;    //Éè±¸Î¨Ò»ID
-    required int32   conid         = 3;    //ËùÔÚcondµÄid
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32   deviceType    = 1;    //å®¢æˆ·ç«¯è®¾å¤‡ç±»å‹
+    string  deviceid      = 2;    //è®¾å¤‡å”¯ä¸€ID
+    int32   conid         = 3;    //æ‰€åœ¨condçš„id
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message LogoutResult
 {       
-    required RetBase   retbase     = 1;
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    RetBase   retbase     = 1;
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
-// ÈÎÎñÏà¹ØĞ­Òé
+// ä»»åŠ¡ç›¸å…³åè®®
 message TaskNotify
 {
-    required int32    tasktype     = 1;
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32    tasktype     = 1;
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message SyncTaskRequest
 {
-    required int64    syncpoint       = 1;
-    required int32    synctype     = 2; // (1,À­ÏÂÔØÈÎÎñ;2.À­ÎÄÕÂÈÎÎñ)
-    optional int32    syncflag     = 3; // (1,À­ĞÂÈÎÎñ;2.À­ÀúÊ·ÈÎÎñ)
-    optional int32    synclimit    = 4;
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int64    syncpoint       = 1;
+    int32    synctype     = 2; // (1,æ‹‰ä¸‹è½½ä»»åŠ¡;2.æ‹‰æ–‡ç« ä»»åŠ¡)
+    int32    syncflag     = 3; // (1,æ‹‰æ–°ä»»åŠ¡;2.æ‹‰å†å²ä»»åŠ¡)
+    int32    synclimit    = 4;
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message SyncTaskResult
 {
-    required RetBase retbase       = 1;
+    RetBase retbase       = 1;
     repeated TaskInfo taskinfos    = 2;
-    required int32    synctype     = 3; // (1,À­ĞÂÈÎÎñ;2.À­ÀúÊ·ÈÎÎñ)
-    optional int32   continueflag  = 4;
-    optional int64   maxtaskid     = 5;
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32    synctype     = 3; // (1,æ‹‰æ–°ä»»åŠ¡;2.æ‹‰å†å²ä»»åŠ¡)
+    int32   continueflag  = 4;
+    int64   maxtaskid     = 5;
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message ReportTaskRequest
 {
-    required TaskInfo  taskinfo    = 1;
-    optional string    reward      = 2;    // ¸øºó¶Ëµ½dbpµÄÇëÇóÊ¹ÓÃµÄ×Ö¶Î£¬½±Àø½ğ¶î
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    TaskInfo  taskinfo    = 1;
+    string    reward      = 2;    // ç»™åç«¯åˆ°dbpçš„è¯·æ±‚ä½¿ç”¨çš„å­—æ®µï¼Œå¥–åŠ±é‡‘é¢
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message ReportTaskResult
 {
-    required RetBase retbase       = 1;
-    required int64   taskid        = 2;
-    required string    reward      = 3;    // ½±ÀøµÄ½ğ¶î
-    optional int32   done_step     = 4;    // µ±Ç°Íê³Éµ½µÚ¼¸²½
-    optional int32   tasktype      = 5;    // ÈÎÎñÀàĞÍ
-    optional int32   report_time   = 6;    // ÉÏ±¨Ê±¼ä
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    RetBase retbase       = 1;
+    int64   taskid        = 2;
+    string    reward      = 3;    // å¥–åŠ±çš„é‡‘é¢
+    int32   done_step     = 4;    // å½“å‰å®Œæˆåˆ°ç¬¬å‡ æ­¥
+    int32   tasktype      = 5;    // ä»»åŠ¡ç±»å‹
+    int32   report_time   = 6;    // ä¸ŠæŠ¥æ—¶é—´
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 
-// ÊÕÈëÏà¹Ø
+// æ”¶å…¥ç›¸å…³
 message GetIncomeRequest
 {
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message GetIncomeResult
 {
-    required RetBase retbase       = 1;
-    required string  pre_cash      = 2;   // Ô¤²Æ¸»Öµ
-    required string  useable_cash  = 3;   // ¿ÉÒÔÌáÈ¡µÄ²Æ¸»Öµ
-    required string  fetched_cash  = 4;   // ÒÑ¾­ÌáÈ¡µÄ²Æ¸»Öµ
-    optional int32   rank          = 5;   // ×Ê²úÅÅĞĞ
-    optional string  desc          = 6;   // ÃèÊö
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    RetBase retbase       = 1;
+    string  pre_cash      = 2;   // é¢„è´¢å¯Œå€¼
+    string  useable_cash  = 3;   // å¯ä»¥æå–çš„è´¢å¯Œå€¼
+    string  fetched_cash  = 4;   // å·²ç»æå–çš„è´¢å¯Œå€¼
+    int32   rank          = 5;   // èµ„äº§æ’è¡Œ
+    string  desc          = 6;   // æè¿°
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
-// Í¬²½Êı¾İµÄack
+// åŒæ­¥æ•°æ®çš„ack
 message AckRequest
 {
-    required int32   type          = 1;
+    int32   type          = 1;
     repeated int64   id            = 2;
-    optional int32   time          = 3;
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32   time          = 3;
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 
-// ´æ´¢ÈÎÎñ
+// å­˜å‚¨ä»»åŠ¡
 message SaveTaskRequest
 {
     repeated TaskInfo taskinfo     = 1;
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message SaveTaskResult
 {
-    required RetBase retbase       = 1;
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    RetBase retbase       = 1;
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 
-// ÌáÏÖĞ­Òé
+// æç°åè®®
 message WithdrawRequest
 {
-    required int32   type          = 1;   // ÌáÏÖÀàĞÍ£¬Î¢ĞÅ£¬qq£¬Ö§¸¶±¦
-    required int32   withdraw_cash = 2;   // ÌáÏÖ½ğ¶î£¬µ¥Î»ÊÇ·Ö
-    required string  id            = 3;   // ¿Í»§¶ËÉú³ÉµÄÌáÏÖid
-    required string  open_id       = 4;   // ¿Í»§¶ËµÚÈı·½ÈÏÖ¤»ñµÃµÄopenid
-    required string  passwd        = 5;   // ÕË»§ÃÜÂë
-    optional string  user_name     = 6;   // ÓÃ»§Ãû£¬ÕæÊµÃû×Ö
-    optional string  desc          = 7;   // ÌáÏÖÃèÊö
-    optional int32   time          = 8;   // ÇëÇóµÄÊ±¼ä
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32   type          = 1;   // æç°ç±»å‹ï¼Œå¾®ä¿¡ï¼Œqqï¼Œæ”¯ä»˜å®
+    int32   withdraw_cash = 2;   // æç°é‡‘é¢ï¼Œå•ä½æ˜¯åˆ†
+    string  id            = 3;   // å®¢æˆ·ç«¯ç”Ÿæˆçš„æç°id
+    string  open_id       = 4;   // å®¢æˆ·ç«¯ç¬¬ä¸‰æ–¹è®¤è¯è·å¾—çš„openid
+    string  passwd        = 5;   // è´¦æˆ·å¯†ç 
+    string  user_name     = 6;   // ç”¨æˆ·åï¼ŒçœŸå®åå­—
+    string  desc          = 7;   // æç°æè¿°
+    int32   time          = 8;   // è¯·æ±‚çš„æ—¶é—´
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message WithdrawResult
 {
-    required RetBase retbase       = 1;
-    required int32   type          = 2;   // ÌáÏÖÀàĞÍ£¬Î¢ĞÅ£¬qq£¬Ö§¸¶±¦
-    required int32   withdraw_cash = 3;   // ÌáÏÖ½ğ¶î£¬µ¥Î»ÊÇ·Ö
-    required string  trade_id      = 4;   // ÌáÏÖÊ±·şÎñ¶ËÉú³ÉµÄ½»Ò×id
-    optional string  desc          = 5;   // ÌáÏÖÃèÊö
-    optional int32   time          = 6;   // ÇëÇóµÄÊ±¼ä
-    optional string  pre_cash      = 7;   // ÕË»§Óà¶î
-    optional string  useable_cash  = 8;   // ÕË»§¿ÉÌáÏÖµÄÓà¶î£¬useable_cash < pre_cash
-    optional string  fetched_cash  = 9;   // ÒÑÌáÏÖµÄ½ğ¶î
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    RetBase retbase       = 1;
+    int32   type          = 2;   // æç°ç±»å‹ï¼Œå¾®ä¿¡ï¼Œqqï¼Œæ”¯ä»˜å®
+    int32   withdraw_cash = 3;   // æç°é‡‘é¢ï¼Œå•ä½æ˜¯åˆ†
+    string  trade_id      = 4;   // æç°æ—¶æœåŠ¡ç«¯ç”Ÿæˆçš„äº¤æ˜“id
+    string  desc          = 5;   // æç°æè¿°
+    int32   time          = 6;   // è¯·æ±‚çš„æ—¶é—´
+    string  pre_cash      = 7;   // è´¦æˆ·ä½™é¢
+    string  useable_cash  = 8;   // è´¦æˆ·å¯æç°çš„ä½™é¢ï¼Œuseable_cash < pre_cash
+    string  fetched_cash  = 9;   // å·²æç°çš„é‡‘é¢
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 
-// mysqlÏà¹Ø
+// mysqlç›¸å…³
 message MysqlRequest
 {
-    required int32   sqlid      = 1;
-    required string  sql        = 2;
-    optional int32   isrequestfield = 3;
-    optional int32   limit      = 4;
-    optional int32   timeout    = 5;
+    int32   sqlid      = 1;
+    string  sql        = 2;
+    int32   isrequestfield = 3;
+    int32   limit      = 4;
+    int32   timeout    = 5;
 }
 
 message MysqlResult
 {
-    required RetBase retbase       = 1;
-    optional int32   affectedrows  = 2;
-    optional int32   insertid      = 3;
+    RetBase retbase       = 1;
+    int32   affectedrows  = 2;
+    int32   insertid      = 3;
     repeated PRow    rows          = 4;
-    optional int32   sqlid         = 5;
+    int32   sqlid         = 5;
 }
 
-// redis proxyÏà¹Ø
+// redis proxyç›¸å…³
 message RedispRequest
 {
-    required int32   sqlid      = 1;
-    required string  key        = 2;
-    optional int32   param      = 3;
-    optional int32   limit      = 4;
-    optional int32   timeout    = 5;
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32   sqlid      = 1;
+    string  key        = 2;
+    int32   param      = 3;
+    int32   limit      = 4;
+    int32   timeout    = 5;
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 message RedispResult
 {
-    required RetBase retbase       = 1;
-    optional int32   affectedrows  = 2;
-    optional int32   insertid      = 3;
+    RetBase retbase       = 1;
+    int32   affectedrows  = 2;
+    int32   insertid      = 3;
     repeated PRow    rows          = 4;
-    optional int32   sqlid         = 5;
-    optional int32   transid       = 32;   // ±êÊ¾ÇëÇó
+    int32   sqlid         = 5;
+    int32   transid       = 32;   // æ ‡ç¤ºè¯·æ±‚
 }
 
 
-// ·şÎñÆ÷ÄÚ²¿Í¨ÓÃµÄĞ­Òé¸ñÊ½
+// æœåŠ¡å™¨å†…éƒ¨é€šç”¨çš„åè®®æ ¼å¼
 message InnerCommonMsg 
 {
     repeated PDataCell items       = 1;
-    optional string    transfer    = 2;   // ±êÊ¾Í¸´«µÄÄÚÈİ
-    optional int32     time        = 3;   // ±êÊ¾Ê±¼ä
-    optional int32     transid     = 32;  // ±êÊ¾ÇëÇó
+    string    transfer    = 2;   // æ ‡ç¤ºé€ä¼ çš„å†…å®¹
+    int32     time        = 3;   // æ ‡ç¤ºæ—¶é—´
+    int32     transid     = 32;  // æ ‡ç¤ºè¯·æ±‚
 }

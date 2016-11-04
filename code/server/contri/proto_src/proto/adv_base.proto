@@ -1,59 +1,60 @@
+syntax = "proto3";
 package com.adv.msg;
 
 
-// ·µ»ØÖµµÄ»ù±¾Êı¾İ
+// è¿”å›å€¼çš„åŸºæœ¬æ•°æ®
 message RetBase
 {
-   required int32   retcode   = 1;
-   optional string  retmsg    = 2;
+   int32   retcode   = 1;
+   string  retmsg    = 2;
 }
 
 
-// ÈÎÎñĞÅÏ¢
+// ä»»åŠ¡ä¿¡æ¯
 message TaskInfo
 {
-    required int64  taskid        = 1; // ÈÎÎñidºÅ
-    required int32  tasktype      = 2; // ÈÎÎñÀàĞÍ
-    required string taskname      = 3; // ÈÎÎñÃû³Æ
-    required string tasklink      = 4; // ÈÎÎñÁ´½ÓµØÖ·
-    required string taskdesc      = 5; // ÈÎÎñÃèÊö
-    required int32  tasksize      = 6; // ÈÎÎñ´óĞ¡
-    required string taskprice     = 7; // ÈÎÎñ¼Û¸ñ
-    optional int32  taskptstep    = 8; // ÈÎÎñ×Ü²½Öè
-    optional int32  taskpcstep    = 9; // ÈÎÎñµ±Ç°´¦Àí½ø¶È
-    optional string taskpublisher = 10; // ÈÎÎñ·¢²¼Õß
-    optional int32  tasktotalnum  = 11; // ÈÎÎñ×ÜÊı
-    optional int32  taskusednum   = 12; // ÈÎÎñµ±Ç°ÒÑ±»Ê¹ÓÃµÄÊıÄ¿
-    optional int64  taskstime     = 13; // ÈÎÎñ·¢²¼Ê±¼ä
-    optional int64  tasketime     = 14; // ÈÎÎñ½ØÖ¹Ê±¼ä
-    optional int32  taskstatus    = 15; // ÈÎÎñ×´Ì¬(0±íÊ¾Î´¿ªÊ¼¿ÉÖ´ĞĞ£¬1±íÊ¾ÒÑÍê³É£¬2±íÊ¾ÒÑÇÀ¹â£¬3±íÊ¾¹ıÆÚ)
-    optional string taskicon      = 16; // ÈÎÎñÍ¼±êÁ´½Ó
-    optional string taskpkgname   = 17; // ÈÎÎñ°üÃû
+    int64  taskid        = 1; // ä»»åŠ¡idå·
+    int32  tasktype      = 2; // ä»»åŠ¡ç±»å‹
+    string taskname      = 3; // ä»»åŠ¡åç§°
+    string tasklink      = 4; // ä»»åŠ¡é“¾æ¥åœ°å€
+    string taskdesc      = 5; // ä»»åŠ¡æè¿°
+    int32  tasksize      = 6; // ä»»åŠ¡å¤§å°
+    string taskprice     = 7; // ä»»åŠ¡ä»·æ ¼
+    int32  taskptstep    = 8; // ä»»åŠ¡æ€»æ­¥éª¤
+    int32  taskpcstep    = 9; // ä»»åŠ¡å½“å‰å¤„ç†è¿›åº¦
+    string taskpublisher = 10; // ä»»åŠ¡å‘å¸ƒè€…
+    int32  tasktotalnum  = 11; // ä»»åŠ¡æ€»æ•°
+    int32  taskusednum   = 12; // ä»»åŠ¡å½“å‰å·²è¢«ä½¿ç”¨çš„æ•°ç›®
+    int64  taskstime     = 13; // ä»»åŠ¡å‘å¸ƒæ—¶é—´
+    int64  tasketime     = 14; // ä»»åŠ¡æˆªæ­¢æ—¶é—´
+    int32  taskstatus    = 15; // ä»»åŠ¡çŠ¶æ€(0è¡¨ç¤ºæœªå¼€å§‹å¯æ‰§è¡Œï¼Œ1è¡¨ç¤ºå·²å®Œæˆï¼Œ2è¡¨ç¤ºå·²æŠ¢å…‰ï¼Œ3è¡¨ç¤ºè¿‡æœŸ)
+    string taskicon      = 16; // ä»»åŠ¡å›¾æ ‡é“¾æ¥
+    string taskpkgname   = 17; // ä»»åŠ¡åŒ…å
 }
 
 
-// mysql ½á¹¹¶¨Òå
+// mysql ç»“æ„å®šä¹‰
 message PField
 {
-    required string name             = 1;
-    required string value            = 2;
-    required int32  valuetype        = 3;
+    string name             = 1;
+    string value            = 2;
+    int32  valuetype        = 3;
 
 }
 
 message PRow
 {
-    required int32  fieldnum        = 1;
+    int32  fieldnum        = 1;
     repeated PField field           = 2;
 }
 
 
-// ·şÎñÆ÷ÄÚ²¿Í¨ÓÃµÄÊı¾İ´«µİ¸ñÊ½
+// æœåŠ¡å™¨å†…éƒ¨é€šç”¨çš„æ•°æ®ä¼ é€’æ ¼å¼
 message PDataCell
 {
-    required string tag       = 1;
-    optional string str_value = 2;
-    optional int32  i32_value = 3;
-    optional int64  i64_value = 4;
+    string tag       = 1;
+    string str_value = 2;
+    int32  i32_value = 3;
+    int64  i64_value = 4;
 }
 

@@ -261,7 +261,7 @@ UserKeepAliveCmd::UserKeepAliveCmd( const Processor *processor, const Param &par
 UserKeepAliveCmd::~UserKeepAliveCmd()
 {
 }
-    
+
 bool UserKeepAliveCmd::Execute()
 {
     bool ret = true;
@@ -274,6 +274,7 @@ bool UserKeepAliveCmd::Execute()
     if (user) {
         UserMgr::Instance().update_time(user);
         LOG(INFO)("user exist, keep alive succeed. [%s]", user->print());
+        ErrMsg("user exist, heart ok!");
     } else {
         user = UserMgr::Instance().new_user();
         user->uid = uid;
@@ -283,7 +284,24 @@ bool UserKeepAliveCmd::Execute()
         user->client_ver = keep_alive_request->client_ver();
         UserMgr::Instance().add_user(user);
         LOG(INFO)("user not exist, first keep alive request. [%s]", user->print());
+        ErrMsg("user first beat, beat ok!");
     }
+
+    ErrCode(0);
+
+    // for test 
+    LOG(INFO)("beat ok, reply. uid:%u", uid);
+    UserKeepAliveMsgReply reply_result;
+    SrvKeepAliveResult &front_pb_result = reply_result.mutable_pb_msg();
+    com::adv::msg::RetBase* ret_base = front_pb_result.mutable_retbase();
+    ret_base->set_retcode(ErrCode());
+    ret_base->set_retmsg(ErrMsg());
+    reply_result.set_cond_id(keep_alive_request->cond_id());
+    reply_result.set_client_ver(keep_alive_request->client_ver());
+    reply_result.set_device_id(keep_alive_request->device_id());
+    reply_result.set_device_type(keep_alive_request->device_type());
+    reply_result.set_uid(uid);
+    processor_->Reply(param_, *keep_alive_request, reply_result);
     return ret;
 }
 

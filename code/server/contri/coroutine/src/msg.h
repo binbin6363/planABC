@@ -125,11 +125,8 @@ protected:
 class SystemTimeoutMsg : public Msg
 {
 public:
-	static SystemTimeoutMsg::SystemTimeoutMsg *Instance()
-	{
-	    static SystemTimeoutMsg inst;
-	    return &inst;
-	}
+	static SystemTimeoutMsg *Instance();
+
     // time1, curent time; time2, last time
     SystemTimeoutMsg();
     ~SystemTimeoutMsg();
@@ -180,11 +177,7 @@ public:
 class SystemErrorMsg : public CoMsg 
 {
 public:
-	static SystemErrorMsg::SystemErrorMsg *Instance()
-	{
-	    static SystemErrorMsg inst;
-	    return &inst;
-	}
+	static SystemErrorMsg *Instance();
 	
     SystemErrorMsg();
     virtual ~SystemErrorMsg();
@@ -202,11 +195,7 @@ private:
 class SessionNotFoundErrorMsg : public CoMsg 
 {
 public:
-	static SessionNotFoundErrorMsg::SessionNotFoundErrorMsg *Instance()
-	{
-	    static SessionNotFoundErrorMsg inst;
-	    return &inst;
-	}
+	static SessionNotFoundErrorMsg *Instance();
 
     SessionNotFoundErrorMsg();
     virtual ~SessionNotFoundErrorMsg();

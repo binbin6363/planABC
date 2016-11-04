@@ -255,6 +255,65 @@ const string &UserKeepAliveMsg::device_id()
     return front_request_.deviceid();
 }
 
+UserKeepAliveMsgReply::UserKeepAliveMsgReply ()
+{
+}
+
+UserKeepAliveMsgReply::~UserKeepAliveMsgReply()
+{
+}
+
+int UserKeepAliveMsgReply::Encode(char * data, uint32_t & length) const
+{
+    CoMsg::Encode(data, length);
+    BinOutputPacket<> outpkg(data, MAX_SEND_BUFF_LEN);
+    int head_len = sizeof(COHEADER);
+    outpkg.offset_head(head_len);
+
+    int body_len = front_result_.ByteSize();
+    length = head_len + body_len;
+    COHEADER coheader = msg_header();
+    coheader.len = length;
+    outpkg.set_head(coheader);
+    if (!outpkg.good())
+    {
+        LOG(ERROR)("UserKeepAliveMsgReply encode msg failed.");
+        return -1;
+    }
+
+    PrintPbData(front_result_, coheader.print());
+    front_result_.SerializePartialToArray(outpkg.getCur(), outpkg.remainLength());
+    return 0;
+
+}
+
+
+void UserKeepAliveMsgReply::set_uid(uint32_t uid)
+{
+    front_result_.set_uid(uid);
+}
+
+void UserKeepAliveMsgReply::set_cond_id(uint32_t cond_id)
+{
+    front_result_.set_condid(cond_id);
+}
+
+void UserKeepAliveMsgReply::set_device_type(uint32_t device_type)
+{
+    front_result_.set_devicetype(device_type);
+}
+
+void UserKeepAliveMsgReply::set_client_ver(uint32_t client_ver)
+{
+    front_result_.set_version(client_ver);
+}
+
+void UserKeepAliveMsgReply::set_device_id(const string &device_str)
+{
+    front_result_.set_deviceid(device_str);
+}
+
+
 
 FrontWithdrawMsg::FrontWithdrawMsg()
     : CoMsg()

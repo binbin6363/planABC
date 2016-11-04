@@ -108,6 +108,35 @@ typedef struct header_
 }HEADER;
 
 
+// LCSHEADER len + cmd + seq head
+typedef struct lcs_header_
+{
+    lcs_header_()
+        :len(0)
+        ,cmd(0)
+        ,seq(0)
+    {
+    }
+
+    ~lcs_header_()
+    {
+    }
+
+    const char * print() const
+    {
+        static char print_buf[CHAR_BUFF_1024];
+        snprintf(print_buf, sizeof(print_buf),
+            " lcs_header_, len:%u, cmd:%u, seq:%u ", len, cmd, seq);
+    	return print_buf;
+    }
+
+    uint32_t len;    // sizeof(header) + sizeof(body)
+    uint32_t cmd;
+    uint32_t seq;
+
+}LCSHEADER;
+
+
 typedef struct coheader_
 {
     coheader_()
@@ -226,6 +255,15 @@ void BinInputPacket<true>::get_head<HEADER>(HEADER& value);
 template<>
 template<>
 void BinOutputPacket<true>::set_head<HEADER>(HEADER value);
+
+// LCSHEADER
+template<>
+template<>
+void BinInputPacket<true>::get_head<LCSHEADER>(LCSHEADER& value);
+
+template<>
+template<>
+void BinOutputPacket<true>::set_head<LCSHEADER>(LCSHEADER value);
 
 // libco frame HEADER
 template<>

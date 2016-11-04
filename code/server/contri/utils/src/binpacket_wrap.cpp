@@ -45,6 +45,44 @@ void BinOutputPacket<true>::set_head<HEADER>(HEADER value)
     *reinterpret_cast<HEADER*>(m_begin) = value;
 }
 
+// LCSHEADER
+template<>
+template<>
+void BinInputPacket<true>::get_head<LCSHEADER>(LCSHEADER& value)
+{
+    if (sizeof(LCSHEADER) != m_head_len)
+    {
+        m_good = false;
+        LOG(ERROR)("get_head failed.");
+        return;
+    }
+
+    value = *reinterpret_cast<LCSHEADER*>(m_begin);
+    value.len = ntohl(value.len);
+    value.cmd = ntohl(value.cmd);
+    value.seq = ntohl(value.seq);
+
+}
+
+template<>
+template<>
+void BinOutputPacket<true>::set_head<LCSHEADER>(LCSHEADER value)
+{
+    if (sizeof(LCSHEADER) != m_head_len)
+    {
+        m_good = false;
+        LOG(ERROR)("set_head failed.");
+        return;
+    }
+
+    value.len = htonl(value.len);
+    value.cmd = htonl(value.cmd);
+    value.seq = htonl(value.seq);
+    *reinterpret_cast<LCSHEADER*>(m_begin) = value;
+
+}
+
+
 template<>
 template<>
 void BinInputPacket<true>::get_head<COHEADER>(COHEADER& value)

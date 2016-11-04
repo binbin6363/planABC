@@ -234,11 +234,11 @@ int CoMsg::Encode(char *data, uint32_t &length) const
 }
 
 //////////////////////////////////////////////////////////////////////////
-//SystemTimeoutMsg::SystemTimeoutMsg *Instance()
-//{
-//    static SystemTimeoutMsg inst;
-//    return &inst;
-//}
+SystemTimeoutMsg *SystemTimeoutMsg::Instance()
+{
+    static SystemTimeoutMsg inst;
+    return &inst;
+}
 
 SystemTimeoutMsg::SystemTimeoutMsg()
 :Msg()
@@ -292,11 +292,11 @@ string SystemTimeoutMsg::get_err_msg() const
 
 
 // system error msg
-//SystemErrorMsg::SystemErrorMsg *Instance()
-//{
-//    static SystemErrorMsg inst;
-//    return &inst;
-//}
+SystemErrorMsg *SystemErrorMsg::Instance()
+{
+    static SystemErrorMsg inst;
+    return &inst;
+}
 
 SystemErrorMsg::SystemErrorMsg()
     :  CoMsg()
@@ -333,11 +333,11 @@ void SystemErrorMsg::set_err_msg(const string &msg)
 
 
 // session not found msg
-//SessionNotFoundErrorMsg::SessionNotFoundErrorMsg *Instance()
-//{
-//    static SessionNotFoundErrorMsg inst;
-//    return &inst;
-//}
+SessionNotFoundErrorMsg *SessionNotFoundErrorMsg::Instance()
+{
+    static SessionNotFoundErrorMsg inst;
+    return &inst;
+}
 
 SessionNotFoundErrorMsg::SessionNotFoundErrorMsg()
     :  CoMsg()

@@ -14,6 +14,7 @@ typedef com::adv::msg::LogoutRequest SrvLogoutRequest;
 typedef com::adv::msg::LogoutResult  SrvLogoutResult;
 typedef com::adv::msg::RetBase       BaseResult;
 typedef com::adv::msg::UserKeepAliveRequest SrvKeepAliveRequest;
+typedef com::adv::msg::UserKeepAliveResult  SrvKeepAliveResult;
 typedef com::adv::msg::WithdrawRequest      SrvWithdrawRequest;
 typedef com::adv::msg::WithdrawResult       SrvWithdrawResult;
 
@@ -116,6 +117,29 @@ public:
 	const string &device_id();
 private:
 	SrvKeepAliveRequest front_request_;
+};
+
+
+// ======================================================
+// 100, »Ø¸´Ç°¶Ë
+// ======================================================
+class UserKeepAliveMsgReply : public CoMsg
+{
+public:
+    
+    UserKeepAliveMsgReply ();
+    virtual ~UserKeepAliveMsgReply();
+	virtual int Encode(char *data, uint32_t &length) const;
+
+	void set_uid(uint32_t uid);
+	void set_cond_id(uint32_t cond_id);
+	void set_device_type(uint32_t device_type);
+	void set_client_ver(uint32_t client_ver);
+	void set_device_id(const string &device_str);
+
+	SrvKeepAliveResult &mutable_pb_msg(){return front_result_;}
+private:
+	SrvKeepAliveResult front_result_;
 };
 
 

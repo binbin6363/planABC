@@ -1,6 +1,7 @@
 #include "filelog.h"
 #include <sstream>
 #include "linux_util.h"
+#include <unistd.h>
 
 
 namespace utils
